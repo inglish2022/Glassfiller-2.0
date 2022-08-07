@@ -3,6 +3,11 @@ const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 const mongoose = require('mongoose');
 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/glassfiller', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
